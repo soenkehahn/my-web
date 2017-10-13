@@ -31,7 +31,7 @@ app = serve withAssets <$> server
 server :: IO (Server WithAssets)
 server = do
   assets <- serveAssets def
-  return $ apiServer :<|> assets
+  return (apiServer :<|> Tagged assets)
 
 apiServer :: Server Api
 apiServer = return users
